@@ -8,21 +8,28 @@ definitions:
   web.InputOrder:
     properties:
       id:
+        example: any name
         type: string
       price:
+        example: 0.7
         type: number
       tax:
+        example: 0.05
         type: number
     type: object
   web.OutOrder:
     properties:
       final_price:
+        example: 0.75
         type: number
       id:
+        example: any name
         type: string
       price:
+        example: 0.7
         type: number
       tax:
+        example: 0.05
         type: number
     type: object
 host: localhost:8000

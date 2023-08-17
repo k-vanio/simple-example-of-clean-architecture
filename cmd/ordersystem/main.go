@@ -5,6 +5,10 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"os"
+	"os/signal"
+	"path/filepath"
+	"syscall"
 
 	graphql_handler "github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
@@ -19,6 +23,8 @@ import (
 	"github.com/streadway/amqp"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+
+	"github.com/pressly/goose/v3"
 
 	// mysql
 	_ "github.com/go-sql-driver/mysql"
@@ -48,6 +54,16 @@ func main() {
 		panic(err)
 	}
 	defer db.Close()
+
+	incorporationPath := filepath.Join("..", "..", "internal", "infra", "database")
+	baseFS := os.DirFS(incorporationPath)
+	goose.SetBaseFS(baseFS)
+	if err := goose.SetDialect("mysql"); err != nil {
+		panic(err)
+	}
+	if err := goose.Up(db, "migrations"); err != nil {
+		panic(err)
+	}
 
 	rabbitMQChannel := getRabbitMQChannel()
 
@@ -87,7 +103,15 @@ func main() {
 	http.Handle("/query", srv)
 
 	fmt.Println("Starting GraphQL server on port", configs.GraphQLServerPort)
-	http.ListenAndServe(":"+configs.GraphQLServerPort, nil)
+	go http.ListenAndServe(":"+configs.GraphQLServerPort, nil)
+
+	signals := make(chan os.Signal, 1)
+	signal.Notify(signals, syscall.SIGINT)
+
+	fmt.Println("Pressione Ctrl+C para encerrar o programa.")
+	<-signals
+
+	os.Exit(0)
 }
 
 func getRabbitMQChannel() *amqp.Channel {

@@ -104,13 +104,16 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "any name"
                 },
                 "price": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 0.7
                 },
                 "tax": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 0.05
                 }
             }
         },
@@ -118,16 +121,20 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "final_price": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 0.75
                 },
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "any name"
                 },
                 "price": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 0.7
                 },
                 "tax": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 0.05
                 }
             }
         }
