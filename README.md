@@ -1,7 +1,7 @@
 # Instruções para Subir Containers
 
-Este repositório contém um conjunto de definições de containers Docker para criar e gerenciar nossa infraestrutura de desenvolvimento. O processo de configuração é automatizado usando o comando `make infra`.
-Para subir aplicações `make up`.
+- Este repositório contém um conjunto de definições de containers Docker para criar e gerenciar nossa infraestrutura de desenvolvimento. O processo de configuração é automatizado usando o comando `make infra`.
+- Para subir aplicações `make up`.
 
 ## Requisitos
 
