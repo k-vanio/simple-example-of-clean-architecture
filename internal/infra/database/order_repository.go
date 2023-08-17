@@ -27,7 +27,7 @@ func (r *OrderRepository) Save(order *entity.Order) error {
 }
 
 func (r *OrderRepository) List() ([]*entity.Order, error) {
-	var orders []*entity.Order
+	orders := []*entity.Order{}
 
 	return orders, nil
 }

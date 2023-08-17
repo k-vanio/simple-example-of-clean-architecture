@@ -18,25 +18,25 @@ type OrderOutputDTO struct {
 	FinalPrice float64 `json:"final_price"`
 }
 
-type CreateOrderUseCase struct {
+type OrderUseCase struct {
 	OrderRepository entity.OrderRepositoryInterface
 	OrderCreated    events.EventInterface
 	EventDispatcher events.EventDispatcherInterface
 }
 
-func NewCreateOrderUseCase(
+func NewOrderUseCase(
 	OrderRepository entity.OrderRepositoryInterface,
 	OrderCreated events.EventInterface,
 	EventDispatcher events.EventDispatcherInterface,
-) *CreateOrderUseCase {
-	return &CreateOrderUseCase{
+) *OrderUseCase {
+	return &OrderUseCase{
 		OrderRepository: OrderRepository,
 		OrderCreated:    OrderCreated,
 		EventDispatcher: EventDispatcher,
 	}
 }
 
-func (c *CreateOrderUseCase) Execute(input OrderInputDTO) (OrderOutputDTO, error) {
+func (c *OrderUseCase) Execute(input OrderInputDTO) (OrderOutputDTO, error) {
 	order := entity.Order{
 		ID:    input.ID,
 		Price: input.Price,
@@ -60,8 +60,8 @@ func (c *CreateOrderUseCase) Execute(input OrderInputDTO) (OrderOutputDTO, error
 	return dto, nil
 }
 
-func (c *CreateOrderUseCase) List() ([]*OrderOutputDTO, error) {
-	var orders []*OrderOutputDTO
+func (c *OrderUseCase) List() ([]*OrderOutputDTO, error) {
+	orders := []*OrderOutputDTO{}
 
 	rows, err := c.OrderRepository.List()
 	if err != nil {

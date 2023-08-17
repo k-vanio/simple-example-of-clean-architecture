@@ -9,10 +9,10 @@ import (
 
 type OrderService struct {
 	pb.UnimplementedOrderServiceServer
-	CreateOrderUseCase usecases.CreateOrderUseCase
+	CreateOrderUseCase usecases.OrderUseCase
 }
 
-func NewOrderService(createOrderUseCase usecases.CreateOrderUseCase) *OrderService {
+func NewOrderService(createOrderUseCase usecases.OrderUseCase) *OrderService {
 	return &OrderService{
 		CreateOrderUseCase: createOrderUseCase,
 	}

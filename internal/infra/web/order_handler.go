@@ -51,7 +51,7 @@ func (h *WebOrderHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	useCase := usecases.NewCreateOrderUseCase(h.OrderRepository, h.OrderCreatedEvent, h.EventDispatcher)
+	useCase := usecases.NewOrderUseCase(h.OrderRepository, h.OrderCreatedEvent, h.EventDispatcher)
 	output, err := useCase.Execute(dto)
 	if err != nil {
 		response.Json(w, http.StatusInternalServerError, &Error{Err: err.Error()})
@@ -68,7 +68,7 @@ func (h *WebOrderHandler) Create(w http.ResponseWriter, r *http.Request) {
 // @Router /orders [get]
 func (h *WebOrderHandler) List(w http.ResponseWriter, r *http.Request) {
 
-	useCase := usecases.NewCreateOrderUseCase(h.OrderRepository, h.OrderCreatedEvent, h.EventDispatcher)
+	useCase := usecases.NewOrderUseCase(h.OrderRepository, h.OrderCreatedEvent, h.EventDispatcher)
 	output, err := useCase.List()
 	if err != nil {
 		response.Json(w, http.StatusInternalServerError, &Error{Err: err.Error()})

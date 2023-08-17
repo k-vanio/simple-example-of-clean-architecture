@@ -19,10 +19,10 @@ import (
 
 // Injectors from wire.go:
 
-func NewCreateOrderUseCase(db *sql.DB, eventDispatcher events.EventDispatcherInterface) *usecases.CreateOrderUseCase {
+func NewOrderUseCase(db *sql.DB, eventDispatcher events.EventDispatcherInterface) *usecases.OrderUseCase {
 	orderRepository := database.NewOrderRepository(db)
 	orderCreated := event.NewOrderCreated()
-	createOrderUseCase := usecases.NewCreateOrderUseCase(orderRepository, orderCreated, eventDispatcher)
+	createOrderUseCase := usecases.NewOrderUseCase(orderRepository, orderCreated, eventDispatcher)
 	return createOrderUseCase
 }
 
