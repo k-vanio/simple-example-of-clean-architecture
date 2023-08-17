@@ -6,16 +6,16 @@ import (
 )
 
 type OrderInputDTO struct {
-	ID    string  `json:"id"`
-	Price float64 `json:"price"`
-	Tax   float64 `json:"tax"`
+	ID    string  `json:"id" example:"any name"`
+	Price float64 `json:"price" example:"0.70"`
+	Tax   float64 `json:"tax" example:"0.05"`
 }
 
 type OrderOutputDTO struct {
-	ID         string  `json:"id"`
-	Price      float64 `json:"price"`
-	Tax        float64 `json:"tax"`
-	FinalPrice float64 `json:"final_price"`
+	ID         string  `json:"id" example:"any name"`
+	Price      float64 `json:"price" example:"0.70"`
+	Tax        float64 `json:"tax" example:"0.05"`
+	FinalPrice float64 `json:"final_price" example:"0.75"`
 }
 
 type OrderUseCase struct {

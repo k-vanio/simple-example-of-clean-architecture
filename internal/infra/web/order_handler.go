@@ -75,10 +75,5 @@ func (h *WebOrderHandler) List(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if output == nil {
-		response.Json(w, http.StatusOK, []int{})
-		return
-	}
-
 	response.Json(w, http.StatusOK, output)
 }
