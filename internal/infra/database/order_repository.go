@@ -37,6 +37,7 @@ func (r *OrderRepository) List() ([]*entity.Order, error) {
 
 	for rows.Next() {
 		order := &entity.Order{}
+		err := rows.Scan(&order.ID, &order.Price, &order.Tax, &order.FinalPrice)
 		if err != nil {
 			return nil, err
 		}

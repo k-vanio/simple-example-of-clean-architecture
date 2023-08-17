@@ -2,7 +2,7 @@
 
 - Este repositório contém um conjunto de definições de containers Docker para criar e gerenciar nossa infraestrutura de desenvolvimento. O processo de configuração é automatizado usando o comando `make infra`.
 - Para subir aplicações `make up`.
-
+- Veja documentação [docs](http://localhost:8000/docs/index.html)
 ## Requisitos
 
 Certifique-se de ter os seguintes requisitos instalados em sua máquina antes de prosseguir:
@@ -18,3 +18,4 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina antes de
    ```sh
    git clone https://github.com/k-vanio/simple-example-of-clean-architecture.git
    cd simple-example-of-clean-architecture
+
