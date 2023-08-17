@@ -1,0 +1,82 @@
+basePath: /api/orders
+definitions:
+  web.Error:
+    properties:
+      error:
+        type: string
+    type: object
+  web.InputOrder:
+    properties:
+      id:
+        type: string
+      price:
+        type: number
+      tax:
+        type: number
+    type: object
+  web.OutOrder:
+    properties:
+      final_price:
+        type: number
+      id:
+        type: string
+      price:
+        type: number
+      tax:
+        type: number
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: almeida.vanio@pm.me
+    name: Vanio
+    url: https://www.linkedin.com/in/vanio-almeida/
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Orders API
+  version: "0.1"
+paths:
+  /orders:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/web.OutOrder'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/web.Error'
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/web.InputOrder'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/web.OutOrder'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/web.Error'
+swagger: "2.0"
