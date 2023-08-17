@@ -138,7 +138,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "0.1",
 	Host:             "localhost:8000",
-	BasePath:         "/api/orders",
+	BasePath:         "/api",
 	Schemes:          []string{},
 	Title:            "Orders API",
 	Description:      "",

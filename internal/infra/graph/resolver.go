@@ -7,5 +7,5 @@ import "github.com/k-vanio/simple-example-of-clean-architecture/internal/usecase
 // It serves as dependency injection for your app, add any dependencies you require here.
 
 type Resolver struct {
-	CreateOrderUseCase usecases.CreateOrderUseCase
+	OrderUseCase usecases.OrderUseCase
 }

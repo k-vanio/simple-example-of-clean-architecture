@@ -56,7 +56,7 @@ func main() {
 		RabbitMQChannel: rabbitMQChannel,
 	})
 
-	createOrderUseCase := NewCreateOrderUseCase(db, eventDispatcher)
+	orderUseCase := NewOrderUseCase(db, eventDispatcher)
 
 	webServer := webserver.NewWebServer(configs.WebServerPort)
 	webOrderHandler := NewWebOrderHandler(db, eventDispatcher)
@@ -67,8 +67,8 @@ func main() {
 	go webServer.Start()
 
 	grpcServer := grpc.NewServer()
-	createOrderService := service.NewOrderService(*createOrderUseCase)
-	pb.RegisterOrderServiceServer(grpcServer, createOrderService)
+	orderService := service.NewOrderService(*orderUseCase)
+	pb.RegisterOrderServiceServer(grpcServer, orderService)
 	reflection.Register(grpcServer)
 
 	fmt.Println("Starting gRPC server on port", configs.GRPCServerPort)
@@ -78,9 +78,11 @@ func main() {
 	}
 	go grpcServer.Serve(lis)
 
-	srv := graphql_handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
-		CreateOrderUseCase: *createOrderUseCase,
-	}}))
+	srv := graphql_handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{
+		Resolvers: &graph.Resolver{
+			OrderUseCase: *orderUseCase,
+		},
+	}))
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
 

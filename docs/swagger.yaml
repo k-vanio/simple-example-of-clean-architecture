@@ -1,4 +1,4 @@
-basePath: /api/orders
+basePath: /api
 definitions:
   web.Error:
     properties:

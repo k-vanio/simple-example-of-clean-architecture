@@ -11,7 +11,6 @@ import (
 	"github.com/k-vanio/simple-example-of-clean-architecture/internal/event"
 	"github.com/k-vanio/simple-example-of-clean-architecture/internal/infra/database"
 	"github.com/k-vanio/simple-example-of-clean-architecture/internal/infra/web"
-	"github.com/k-vanio/simple-example-of-clean-architecture/internal/usecase"
 	"github.com/k-vanio/simple-example-of-clean-architecture/pkg/events"
 )
 
