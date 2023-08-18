@@ -19,3 +19,8 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina antes de
    git clone https://github.com/k-vanio/simple-example-of-clean-architecture.git
    cd simple-example-of-clean-architecture
 
+2. **URL API**
+
+```sh
+   http://localhost:8000/api/orders GET
+   http://localhost:8000/api/orders POST
